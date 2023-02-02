@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Telepatia",
-    "slug": "Telepatia",
+    "slug": "telepatia",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -28,6 +28,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "204db2c4-3245-4f2d-94a0-b5de36bff46c"
+      }
+    },
+    "owner": "raulflores"
   }
 }
