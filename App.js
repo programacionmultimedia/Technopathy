@@ -1,8 +1,9 @@
 import React, { useState , useEffect, useRef} from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, Animated} from 'react-native';
+import { Text, TouchableOpacity, View, Animated} from 'react-native';
 import { Accelerometer } from 'expo-sensors';
 import Swiper from './Swiper';
 import { initialImages, blanco } from './img';
+import styles from './css/general.js';
 
 export default function App() {
   const [{ x, y, z }, setData] = useState({
@@ -237,30 +238,3 @@ export default function App() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'black',
-  },
-  text: {
-    textAlign: 'center',
-    padding: 15,
-  },
-  buttonContainer: {
-    flexDirection: 'row',
-    alignItems: 'stretch',
-    marginTop: 15,
-  },
-  button: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#eee',
-    padding: 10,
-  },
-  fadingContainer: {
-    flex: 1,
-
-  },
-});
