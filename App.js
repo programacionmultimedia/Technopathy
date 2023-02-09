@@ -1,7 +1,7 @@
 import React, { useState , useEffect, useRef} from 'react';
 import { Text, TouchableOpacity, View, Animated} from 'react-native';
 import { Accelerometer } from 'expo-sensors';
-import Swiper from './Swiper';
+import Swiper from './components/Swiper';
 import { initialImages, blanco } from './img';
 import styles from './css/general.js';
 
@@ -25,9 +25,9 @@ export default function App() {
 
   const inicia_efecto = ()  => {
 
-      console.log('X: ',x.toFixed(2));
-      console.log('Y: ',y.toFixed(2));
-      console.log('Z: ',z.toFixed(2));
+      // console.log('X: ',x.toFixed(2));
+      // console.log('Y: ',y.toFixed(2));
+      // console.log('Z: ',z.toFixed(2));
 
     // pre **************
     if ( (estado === 'pre')
@@ -35,28 +35,26 @@ export default function App() {
           && (y < 0.16 && y > -0.16)
           && (z < 1.16 && z > 0.8)) {
 
-            console.log('\x1B[34mTIMER----**************',typeof timer);
-            console.log('images ----**************', images[0].name);
+            // console.log('\x1B[34mTIMER----**************',typeof timer);
+            // console.log('images ----**************', images[0].name);
             _unsubscribe();
 
             if (typeof timer === "undefined" && images[0].name !== 'blanco') {
 
               const timer = () => {
                   setTimeout( () => {
-                    console.log('\x1B[34m888888888 Initial timeout! 888888888888');
+                    // console.log('\x1B[34m888888888 Initial timeout! 888888888888');
                     if ( (images[0].name !== 'blanco')
                       && (estado !== 'inicio') ) {
                         setImages(blanco);
                         setEstado({ estado: 'inicio'});
                         _subscribe();
                     }
-
                     clearTimeout(timer);
-                    console.log('\x1B[34mTIMER----**************',timer);
+                    // console.log('\x1B[34mTIMER----**************',timer);
                   }
                   , 2000);
               };
-
               timer();
             }
     }
@@ -76,10 +74,10 @@ export default function App() {
           && (z < 1.16 && z > 0.8)) {
 
             !posibleEstrella ? setPosibleEstrella({ posibleEstrella: true}) : '' ;
-            console.log('\x1b[33m**** posibleEstrella *************', posibleEstrella);
+            // console.log('\x1b[33m**** posibleEstrella *************', posibleEstrella);
             if (  posibleEstrella && (y > 0.39)) {
 
-            console.log('\x1b[32m ----> posibleEstrella => cambio a ondas  <----');
+            // console.log('\x1b[32m ----> posibleEstrella => cambio a ondas  <----');
             changeImage('ondas');
 
             }
@@ -115,7 +113,7 @@ export default function App() {
     initialImages.images.map((item, index) => {
 
       if (item.name === imageName){
-        console.log('\x1B[34mSELECCIONADO --->>>>>>>',item.name);
+        // console.log('\x1B[34mSELECCIONADO --->>>>>>>',item.name);
         setPosibleEstrella({ posibleEstrella: false});
         setImages( {images:[item]});
         setEstado({ estado: 'final'});
@@ -134,7 +132,7 @@ export default function App() {
     setData({ x: 0, y: 0, z: 0, });
     _unsubscribe();
     _subscribe();
-    console.log('\x1B[35m ************ REINICIANDO');
+    // console.log('\x1B[35m ************ REINICIANDO');
 
   }
 
@@ -155,7 +153,7 @@ export default function App() {
   // DETECTANDO TRIPLE TAP *****************
   const onStartShouldSetResponder = (evt) => {
     if (evt.nativeEvent.touches.length === 3) {
-      console.log('\x1B[35m ************ TRIPLE TAP DETECTADO === 3');
+      // console.log('\x1B[35m ************ TRIPLE TAP DETECTADO === 3');
       fadeOut();
       return true;
     }
@@ -171,7 +169,7 @@ export default function App() {
   // TRANSICIONES *********************
 
   const startTransition = () => {
-    console.log('\x1B[35m ************ fadeAnim]', fadeAnim);
+    // console.log('\x1B[35m ************ fadeAnim]', fadeAnim);
     Animated.timing(fadeAnim, {
       toValue: 1,
       duration: 200,
@@ -190,17 +188,17 @@ export default function App() {
   //*****************************************
   //*****************************************
 
-  console.log('images', images);
-  console.log('\x1b[33m----**** var estado: ',estado);
+  // console.log('images', images);
+  // console.log('\x1b[33m----**** var estado: ',estado);
 
   if (subscription){
     Accelerometer.setUpdateInterval(REFRESH);
-    console.log('\x1B[31m ************ Subscription');
+    // console.log('\x1B[31m ************ Subscription');
     inicia_efecto();
   }
-  else {
-    console.log('\x1B[31m ************ No Subscription');
-  }
+  // else {
+  //   console.log('\x1B[31m ************ No Subscription');
+  // }
 
   return (
 
@@ -213,7 +211,6 @@ export default function App() {
       style={[
         styles.fadingContainer,
         {
-          // Bind opacity to animated value
           opacity: fadeAnim,
         },
       ]}>
